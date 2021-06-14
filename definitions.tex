@@ -1,0 +1,84 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%        IMPORTS           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[spanish]{babel}
+\usepackage{subcaption}% Para poder realizar múltiples figuras en una sola
+\usepackage{graphicx}% Para poder incluir figuras y las tablas
+\usepackage{natbib} % Para poder citar
+\usepackage{caption}% Para poder incluir descripciones en las figuras
+\usepackage{titlesec}% Para poder modificar los títulos de las secciones
+\usepackage{titletoc}% Para poder modificar los títulos en la tabla de contenidos
+\usepackage[nottoc,numbib]{tocbibind}% Para incluir la bibliografía en la tabla de contenidos
+\usepackage{parskip} % Para poder eliminar la identación en cada párrafo
+\usepackage{xcolor} % Para usar textcolor
+\usepackage{ulem} % Para tachar texto
+\usepackage{float} % Ubicación de figuras
+\usepackage{amssymb} % Símbolos matemáticos
+\usepackage{amsmath} %  Descripciones y ecuaciones matemáticas
+\usepackage{hyperref} % {Para hacer que las referencias sean cliqueables
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% re-definiciones de formato %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Modifica los títulos de la tabla de contenidos y de la bibliografía para que concuerden con el formato del plan del proyecto de grado
+\addto\captionsspanish
+{
+    \renewcommand\contentsname{CONTENIDO}%\renewcommand{\contentsname }{\hfill\bfseries TABLA DE CONTENIDO\hfill}%
+    \renewcommand{\refname}{Bibliografía}
+    \renewcommand\listfigurename{LISTA DE FIGURAS}
+    \renewcommand\listtablename{LISTA DE TABLAS}
+    \renewcommand\tablename{Tabla}
+}
+
+% Modifica lo que tiene que ver con el título de las secciones
+\titleformat{\section}{\normalfont\fontfamily{\sfdefault}\fontsize{12}{17}\bfseries}{\thesection}{1em}{}
+
+% Modifica lo que tiene que ver con el título de las subsecciones
+\titleformat{\subsection}{\normalfont\fontfamily{\sfdefault}\fontsize{12}{17}\bfseries}{\thesubsection}{1em}{}
+
+% Modifica lo que tiene que ver con el título de las secciones en la tabla de contenidos
+\titlecontents{section}[1em]{\normalfont\fontfamily{\sfdefault}\fontsize{12}{17}\bfseries}
+{\thecontentslabel\enspace}
+{}
+{\titlerule*[1pc]{.}\quad\contentspage}[\vskip 4pt]
+
+% Modifica lo que tiene que ver con el título de las subsecciones en la tabla de contenidos
+\titlecontents{subsection}[2.7em]{\normalfont\fontfamily{\sfdefault}\fontsize{12}{17}\bfseries}
+{\thecontentslabel\enspace}
+{}
+{\titlerule*[1pc]{.}\quad\contentspage}[\vskip 3pt]
+
+\setlength{\parindent}{0pt} % Elimina la identación en cada párrafo
+
+
+\renewcommand{\familydefault}{\sfdefault}% Modifica el estilo de letra a una muy parecida a arial 
+
+%% Configura como van a ser las citas
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    citecolor = blue,
+}
+
+\DeclareMathOperator*{\minimize}{minimize} % Declaración operador minimize
+
+\DeclareMathOperator*{\maximize}{maximize} % Declaración operador maximize
+\DeclareMathOperator*{\subjectto}{subjectto} % Declaración operador subjectto
+\DeclareMathOperator*{\argmax}{arg \ max} % Declaración operador arg max
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Información del proyecto %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\autor{David Santiago Morales Norato}
+\def\titulo{Algoritmo de clasificación de objetos en imágenes difractivas basado en medidas cuadráticas codificadas usando un enfoque de aprendizaje profundo}
+\def\director{PhD.(c). Andrés Felipe Jerez Ariza}
+\def\codirector{Ph.D. Henry Arguello Fuentes}
+\def\universidad{Universidad Industrial de Santander}
+\def\escuela{Escuela de Ingeniería de Sistemas e Informática}
+\def\facultad{Facultad de Ingenierías Fisicomecánicas}
+\def\grupo{Grupo de Investigación en Diseño de Algoritmos y Procesamiento de Datos Multidimensionales (HDSP)}
+\def\fecha{\today}
+\def\codigo{2170102}

@@ -1,0 +1,47 @@
+%% Realizado por: 
+%% David Santiago Morales Norato - 2021
+
+\documentclass[12pt]{article}
+\usepackage[a4paper]{geometry}
+\geometry{top=3.5cm, bottom=3.5cm, left=4cm, right=3.5cm}
+\input{definitions}
+\usepackage{hhline}
+
+\begin{document}
+
+    \input{pagina_titulo}
+    
+    \tableofcontents
+    \newpage
+    \renewcommand{\numberline}{{Figura}~\oldnumberline }%
+    \listoffigures
+    \newpage
+    \renewcommand{\numberline}{{Tabla}~\oldnumberline }%
+    \listoftables
+    \newpage
+    
+    \section{INTRODUCCIÓN}
+    \input{sections/introducción}
+    
+    
+    \section{PLANTEAMIENTO Y JUSTIFICACIÓN DEL PROBLEMA}
+    \input{sections/planteamiento_justificación}
+    
+    \section{OBJETIVOS}
+    \input{sections/objetivos}
+    
+    \section{MARCO DE REFERENCIA}
+    \input{sections/marco_de_referencia}
+    
+    \section{METODOLOGÍA}
+    \input{sections/metodología}
+    
+    \section{CRONOGRAMA}
+    \input{sections/cronograma}
+    
+    \section{PRESUPUESTO}
+    \input{sections/presupuesto}
+    
+    \bibliographystyle{plain}
+    \bibliography{references.bib}
+\end{document}
