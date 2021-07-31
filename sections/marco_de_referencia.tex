@@ -2,7 +2,7 @@ Esta sección presenta una descripción de los conceptos generales y teóricos e
 
 \subsection{ADQUISICIÓN DE LA INFORMACIÓN DE FASE}
 
-Los sistemas ópticos tradicionales captan únicamente la información de la intensidad de la luz incidente sobre el sensor, perdiendo con esto la información de fase, que resulta fundamental en aplicaciones como cristalografía de rayos-x \cite{pinilla2018coded}, astronomía \cite{fienup1987phase}, holografía \cite{rivenson2018phase}, entre otras. Por lo tanto, la obtención de la información de  fase  requiere la implementación  de sistemas ópticos que logren codificar la fase del campo óptico, preservándola implícita en las medidas de intensidad adquiridas. 
+Los sistemas ópticos tradicionales captan únicamente la información de la intensidad de la luz incidente sobre el sensor, perdiendo con esto la información de fase, que resulta fundamental en aplicaciones como cristalografía de rayos-x \cite{pinilla2018coded}, astronomía \cite{fienup1987phase}, holografía \cite{rivenson2018phase}, entre otras. Por lo tanto, la obtención de la información de fase  requiere la implementación  de sistemas ópticos que logren codificar la fase del campo óptico, preservándola implícita en las medidas de intensidad adquiridas. 
     
 \subsubsection{SISTEMA ÓPTICO DE DIFRACCIÓN}
 En múltiples áreas de la ciencia e ingeniería se presenta la adquisición de medidas de intensidad haciendo uso de sistemas ópticos de difracción \cite{fienup1987phase,pinilla2018coded,rivenson2018phase}. La Figura \ref{fig:difraction_systems} muestra un esquema común de los sistemas ópticos de difracción, los cuales se componen por un objeto representado con el vector $\mathbf{z}$ iluminado por luz coherente, modulado en fase por una máscara de fase $\mathbf{D}$, produciendo las medidas cuadráticas codificadas. Dependiendo de la distancia del sensor $L$, la longitud de onda $\lambda$ y el radio de apertura $d$, los modelos de propagación se denominan campo cercano, medio y lejano.
@@ -19,11 +19,11 @@ En múltiples áreas de la ciencia e ingeniería se presenta la adquisición de 
 Debido a que los sensores únicamente captan la información de la intensidad de la luz, el modelo de adquisición en los sistemas ópticos de difracción se describe como
 
 \begin{equation}
-    \mathbf{y} = \vert \mathbf{A}\mathbf{z} \vert^2, 
+    \mathbf{y}_k = \vert \mathbf{A}_k\mathbf{z} \vert^2, 
     \label{eq:phase_retrieval_problem}
 \end{equation}
 
-donde $\mathbf{z} \in {\mathbb{C}}^{n}$ es una vectorización del objeto de interés, $\mathbf{y} \in \mathbb{R}^{m}$ son las medidas adquiridas y $\mathbf{A}$ es una matriz que describe la propagación del frente de onda de la luz hasta el sensor. De acuerdo con la teoría de difracción \cite{poon2014introduction}, la propagación del frente de onda del objeto se modela entre los campos, cercano, medio y lejano dependiendo del número de Fresnel $F = \frac{d^2}{L\lambda}$, que determina el modelado matemático acorde a la zona de difracción en que se captan las medidas.
+donde $\mathbf{z} \in {\mathbb{C}}^{n}$ es una vectorización del objeto de interés, $\mathbf{y}_k \in \mathbb{R}^{n}$ son las medidas adquiridas y $\mathbf{A}_k\in\mathbb{C}^{n\times n}$ son las matrices que describe la propagación del frente de onda de la luz hasta el sensor, aquí,  $k=1,\dots,K$, siendo $K$ el número total de proyecciones. De acuerdo con la teoría de difracción \cite{poon2014introduction}, la propagación del frente de onda del objeto se modela entre los campos, cercano, medio y lejano dependiendo del número de Fresnel $F = \frac{d^2}{L\lambda}$, que determina el modelado matemático acorde a la zona de difracción en que se captan las medidas.
 
 \begin{align}
     \mathbf{y}_k= 
@@ -35,12 +35,12 @@ donde $\mathbf{z} \in {\mathbb{C}}^{n}$ es una vectorización del objeto de inte
     \label{eq:modelado_zonas_difraccion}
 \end{align}
 
-donde $\vert \cdot \vert$ representa el operador de magnitud, $\mathbf{F}$ corresponde a la transformada discreta de Fourier, la matriz diagonal $\mathbf{D}_k \in \mathbb{C}^{n \times n}$ representa las máscaras de fase con $k=1,\dots,K$, siendo $K$ el número de proyecciones, finalmente $\mathbf{T} \in \mathbb{C}^{n \times n}$ y $\mathbf{Q} \in \mathbb{C}^{n \times n}$ son matrices ortogonales que modelan la función de transferencia espacial del campo medio y cercano, respectivamente \cite{poon2014introduction,goodman2005introduction}.
+donde $\vert \cdot \vert$ representa el operador de magnitud, $\mathbf{F}$ corresponde a la transformada discreta de Fourier, la matriz diagonal $\mathbf{D}_k \in \mathbb{C}^{n \times n}$ representa las máscaras de fase, finalmente $\mathbf{T} \in \mathbb{C}^{n \times n}$ y $\mathbf{Q} \in \mathbb{C}^{n \times n}$ son matrices ortogonales que modelan la función de transferencia espacial del campo medio y cercano, respectivamente \cite{poon2014introduction,goodman2005introduction}.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{images/mescla_abs_fase.pdf}
-    \caption{\hspace{2mm}Experimento desarrollado en \cite{shechtman2015phase} intercambiando las fases de la transformada de Fourier de 2 imágenes .}
+    \caption{\hspace{2mm}Experimento  intercambiando las fases de la transformada de Fourier de 2 imágenes .}
     \label{fig:mescla_fases}
 \end{figure}
 
@@ -215,7 +215,7 @@ donde $\delta(\cdot,\cdot)$ corresponde a la función delta de Kronecker, dada p
 \subsubsection{REDES NEURONALES}
 
 Los enfoques de aprendizaje profundo han generado un gran progreso en problemas muy complejos en los últimos años
-\cite{he2016deep,li2019deep,li2018deep, wang2019development,wu2016google}. El aprendizaje profundo busca encontrar una función $f: \mathbb{R}^{d_1} \rightarrow \mathbb{R}^{d_2}$. La función $f$ se suele llamar arquitectura de red neuronal profunda, puesto que, consiste en la concatenación de múltiples capas compuestas de unidades mínimas llamadas neuronas. Cada neurona realiza una combinación lineal entre las entradas, para posteriormente usar una función no lineal en la salida. Las salidas de cada neurona en una capa funcionan como entrada de las neuronas ubicadas en la siguiente capa, creando así, una arquitectura de red neuronal profunda \cite{fan2019selective}. En la Figura \ref{fig:nn}, se muestra una arquitectura de una arquitectura de red neuronal $f: \mathbb{R}^{d_1} \rightarrow \mathbb{R}^{d_2}$
+\cite{he2016deep,li2019deep,li2018deep, wang2019development,vaswani2017attention}. El aprendizaje profundo busca encontrar una función $f: \mathbb{R}^{d_1} \rightarrow \mathbb{R}^{d_2}$. La función $f$ se suele llamar arquitectura de red neuronal profunda, puesto que, consiste en la concatenación de múltiples capas compuestas de unidades mínimas llamadas neuronas. Cada neurona realiza una combinación lineal entre las entradas, para posteriormente usar una función no lineal en la salida. Las salidas de cada neurona en una capa funcionan como entrada de las neuronas ubicadas en la siguiente capa, creando así, una arquitectura de red neuronal profunda \cite{fan2019selective}. En la Figura \ref{fig:nn}, se muestra una arquitectura de una arquitectura de red neuronal $f: \mathbb{R}^{d_1} \rightarrow \mathbb{R}^{d_2}$
 
 \begin{figure}[H]
     \centering
@@ -239,7 +239,7 @@ donde para cada capa $1 \leq \ell \leq L$, $\sigma_\ell$ corresponde a una funci
 \end{equation}
 
 \subsubsection{CLASIFICACIÓN USANDO MEDIDAS CUADRÁTICAS}
-Recientemente, en el campo de espectroscopia \cite{bacca2021deep}, tomografía computarizada \cite{douarre2020value} e imágenes de un solo píxel \cite{bacca2020coupled}, se han propuesto sistemas de clasificación que usan únicamente medidas obtenidas a través del sistema lineal de adquisición, esto debido al enfoque basado en el aprendizaje profundo en el que la arquitectura incluye una capa con el sistema óptico de adquisición. Este enfoque ha sido estudiado igualmente en imágenes difractivas como en holografía \cite{kim2018deep} y cristalografía de rayos-x \cite{ziletti2018insightful}, donde las medidas obtenidas son difícilmente reconocidas por el ojo humano. 
+Recientemente, en el campo de tomografía computarizada \cite{douarre2020value} e imágenes de un solo píxel \cite{bacca2020coupled}, se han propuesto sistemas de clasificación que usan únicamente medidas obtenidas a través del sistema lineal de adquisición, esto debido al enfoque basado en el aprendizaje profundo en el que la arquitectura incluye una capa con el sistema óptico de adquisición. Este enfoque ha sido estudiado igualmente en imágenes difractivas como en holografía \cite{kim2018deep} y cristalografía de rayos-x \cite{ziletti2018insightful}, donde las medidas obtenidas son difícilmente reconocidas por el ojo humano. 
 
 Sin embargo, estos enfoques propuestos no han sido abordados en imágenes de medidas cuadráticas codificadas, de modo que, este trabajo propone el desarrollo de un algoritmo de clasificación usando medidas cuadráticas codificadas basado en aprendizaje profundo. 
 
